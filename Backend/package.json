@@ -1,0 +1,21 @@
+{
+    "name": "health-integration-project-frontend",
+    "version": "1.0.0",
+    "description": "Frontend for Health Integration Project",
+    "scripts": {
+        "start": "npm run dev",
+        "dev": "webpack-dev-server --mode development --open",
+        "build": "echo 'No build script specified'",
+        "test": "echo 'No test script specified'"
+    },
+    "keywords": [],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "mongoose": "^8.5.2"
+    },
+    "devDependencies": {
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^5.0.4"
+    }
+}

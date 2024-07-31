@@ -1,0 +1,148 @@
+/* Base color variables */
+:root {
+    --primary-color: hsl(210, 25%, 85%); /* Light blue */
+    --secondary-color: hsl(210, 50%, 50%); /* Medium blue */
+    --accent-color: hsl(290, 70%, 50%); /* Light coral */
+  }
+  
+  /* Body */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+  }
+  
+  /* Header */
+  header {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    
+  }
+  
+  /* Navigation */
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  nav li {
+    margin-right: 20px;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Main */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2, h3, h4 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Services */
+  .service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .service i {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+  }
+  
+  .service h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .service p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Education */
+  .education-content {
+    padding: 20px;
+  }
+  
+  .education-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Register and Login */
+  .register-form,
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .register-form label,
+  .login-form label {
+    margin-bottom: 10px;
+  }
+  
+  .register-form input,
+  .login-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .register-form button,
+  .login-form button {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  /* Patient and Doctor */
+  .patient-section,
+  .doctor-section {
+    padding: 20px;
+  }
+  
+  .patient-booking,
+  .manage-appointments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    }

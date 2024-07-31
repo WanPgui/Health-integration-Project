@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediLink Africa - Register</title>
+    <link rel="stylesheet" href="./src/styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>MediLink Africa</h1>
+        <nav>
+            <ul>
+                <li><a href="/Frontend/public/index.html" id="home-link">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="register">
+            <h2>Register</h2>
+            <form id="register-form">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                <button type="submit" id="register-button">Register</button>
+            </form>
+            <p>Already have an account? <a href="Log-in.html">Sign In</a></p>
+            <div id="alert" class="alert"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MediLink Africa. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Handle register form submission
+        document.getElementById("register-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            
+            // Send registration request to the server (replace with your server-side logic)
+            fetch('register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("alert").innerHTML = "Registration successful! You will be redirected to the login page.";
+                    setTimeout(function() {
+                        window.location.href = "login.html";
+                    }, 2000);
+                } else {
+                    document.getElementById("alert").innerHTML = "Error registering: " + data.error;
+                }
+            });
+        });
+
+        // Add onscreen message when button is clicked
+        document.getElementById("register-button").addEventListener("click", function() {
+            document.getElementById("alert").innerHTML = "Registration sucessful!";
+        });
+    </script>
+</body>
+</html>

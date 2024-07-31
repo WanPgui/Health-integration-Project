@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediLink Africa - Booking</title>
+    <link rel="stylesheet" href="./src/styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" integrity="sha384-c+MzxWz6jU/41gB6uDfW6K+vD/i/4u5GwGqRU5JdU+/LlxoG+/5Q0p/7o+/LlxoG" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>MediLink Africa</h1>
+        <nav>
+            <ul>
+                <li><a href="/Frontend/public/index.html" id="home-link">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="booking">
+            <h2>Book an Appointment</h2>
+            <div id="calendar"></div>
+            <form id="booking-form">
+                <input type="text" id="patient-name" placeholder="Your Name" required>
+                <input type="text" id="patient-id" placeholder="Your ID" required>
+                <button type="submit">Book Appointment</button>
+            </form>
+            <div id="booking-alert"></div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 MediLink Africa. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Initialize the calendar
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridWeek',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: []
+        });
+        calendar.render();
+
+        // Load available slots from the database
+        fetch('available-slots.php')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(slot => {
+                    calendar.addEvent({
+                        start: slot.start,
+                        end: slot.end,
+                        id: slot.id,
+                        title: slot.text
+                    });
+                });
+            });
+
+        // Handle booking form submission
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var patientName = document.getElementById("patient-name").value;
+            var patientId = document.getElementById("patient-id").value;
+            var selectedSlot = calendar.getEvents().find(event => event.title === 'Selected');
+            if (selectedSlot) {
+                // Send booking request to the server
+                fetch('book-appointment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        patientName: patientName,
+                        patientId: patientId,
+                        slotId: selectedSlot.id
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Appointment booked successfully!");
+                    } else {
+                        alert("Error booking appointment: " + data.error);
+                    }
+                });
+            } else {
+                alert("Please select a time slot.");
+            }
+        });
+    </script>
+</body>
+</html>
