@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Data - MediLink Africa</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Health Data</h1>
+    </header>
+    <main>
+        <canvas id="healthDataChart" width="400" height="400"></canvas>
+    </main>
+    <script>
+        const ctx = document.getElementById('healthDataChart').getContext('2d');
+        const data = {
+            labels: ['Condition A', 'Condition B', 'Condition C', 'Condition D'],
+            datasets: [{
+                data: [10, 20, 30, 40],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+            }]
+        };
+        const healthDataChart = new Chart(ctx, {
+            type: 'pie',
+            data: data
+        });
+    </script>
+</body>
+</html>

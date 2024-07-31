@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Data</title>
+    <link rel="stylesheet" href="./src/styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>MediLink Africa</h1>
+    <nav>
+        <ul>
+            <li><a href="./index.html" id="home-link">Home</a></li>
+        </ul>
+    </nav>
+  </header>
+    <main>
+        <section id="patient-data">
+            <h2>Patient Data</h2>
+                <div id="pie-chart-container"></div>
+                <div id="pie-chart"></div>
+                <div id="patient-data">
+                    <h2 id="patient-name"></h2>
+                    <p id="patient-age"></p>
+                    <p id="patient-gender"></p>
+                    <button id="update-button">Update</button>
+                  </div>
+                  <li><a href="health-data.html" id="health-data"></a></li>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MediLink Africa. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Get the patient data element
+const patientData = document.getElementById("patient-data");
+
+// Get the patient name element
+const patientName = document.getElementById("patient-name");
+
+// Get the patient age element
+const patientAge = document.getElementById("patient-age");
+
+// Get the patient gender element
+const patientGender = document.getElementById("patient-gender");
+
+// Get the update button element
+const updateButton = document.getElementById("update-button");
+
+// Set the patient name
+patientName.textContent = "John Doe";
+
+// Set the patient age
+patientAge.textContent = "30";
+
+// Set the patient gender
+patientGender.textContent = "Male";
+
+// Add a click event listener to the update button
+updateButton.addEventListener("click", () => {
+  // Update the patient data
+  patientName.textContent = "Jane Doe";
+  patientAge.textContent = "25";
+  patientGender.textContent = "Female";
+});
+// patientData.js
+
+// Function to display patient health records chart
+const config = {
+  type: 'pie',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Patient Data Pie Chart'
+      }
+    }
+  },
+};
+
+const patientDataPieChart = new Chart(
+  document.getElementById('patientDataPieChart'),
+  config
+);
+const data = {
+  labels: ['Label 1', 'Label 2', 'Label 3'],
+  datasets: [{
+    label: 'Patient Data',
+    data: [10, 20, 30],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)'
+    ],
+    borderColor: [
+      'rgba(255, 99, 132, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)'
+    ],
+    borderWidth: 1
+  }]
+};
+    </script>
+</body>
+</html>
