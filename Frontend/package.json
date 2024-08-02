@@ -1,7 +1,34 @@
-{
-    "name": "health-integration-project-frontend",
-    "version": "1.0.0",
-    "description": "Frontend for Health Integration Project",
+module.exports = function(env) {
+    return {
+      mode: 'development',
+      entry: './src/index.js',
+      output: {
+        path: `${__dirname}/public`,
+        filename: 'main.js',
+        publicPath: '/'
+      },
+      devServer: {
+        contentBase: './public',
+        historyApiFallback: true,
+        port: 8080,
+        open: true
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }
+          }
+        ]
+      }
+    };
+  };
     "scripts": {
         "start": "npm run dev",
         "dev": "npx webpack-dev-server --mode development --open",
